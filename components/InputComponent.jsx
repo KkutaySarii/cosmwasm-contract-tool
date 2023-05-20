@@ -125,8 +125,6 @@ function InputComponent() {
                 console.log(prompt);
                 setQuery([...query, prompt]);
                 setPrompt("");
-
-                // router push
               }}
               className="w-[550px] h-[60px] bg-gradient-to-r from-[#4A1C85] to-[#35A4FD] bg-opacity-10 hover:scale-105 hover:shadow-lg duration-200 active:scale-95 active:shadow-none disabled:opacity-25 disabled:cursor-not-allowed"
               disabled={prompt === ""}
