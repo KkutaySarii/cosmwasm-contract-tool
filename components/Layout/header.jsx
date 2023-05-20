@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import { useWallet } from "@/context/wallet";
 import { useKeplr } from "@/services/keplr";
@@ -29,6 +29,7 @@ const Header = () => {
   const wallet = useWallet();
   const [showDropdown, setShowDropdown] = React.useState(false);
   const [dropdown, setDropdown] = React.useState(dropdowns[0]);
+  const dropdownRef = useRef(null);
 
   const ConnectWallet = () => {
     if (wallet.initialized) {
@@ -37,14 +38,29 @@ const Header = () => {
       keplr.connect();
     }
   };
+
+  const handleOutsideClick = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setShowDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
   return (
     <div className="pt-6 px-4 container mx-auto bg-transparent">
       <header className="flex md:gap-x-[134px] gap-x-[72px] items-center">
-        <Image alt="logo" src="/images/logo.svg" width={38} height={38} />
+        <Link href="/">
+          <Image alt="logo" src="/images/logo.svg" width={38} height={38} />
+        </Link>
         <div className="flex w-full sm:justify-between justify-end items-center">
           <div className="hidden sm:block">
             <div className="relative flex items-center p-[10px] text-white text-lg font-bold">
-              <div className="relative w-[238px]">
+              <div ref={dropdownRef} className="relative w-[238px]">
                 <button
                   type="button"
                   onClick={() => setShowDropdown(!showDropdown)}
@@ -59,7 +75,7 @@ const Header = () => {
                   />
                 </button>
                 {showDropdown && (
-                  <div className="absolute w-full top-[50px] left-0 z-40">
+                  <div className="absolute w-full bg-blue-500 top-[50px] left-0 z-40">
                     <ul>
                       {dropdowns.map((item, index) => (
                         <li
