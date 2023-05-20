@@ -8,9 +8,9 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "main-gradient": "linear-gradient(90deg, #4A1C85 0%, #35A4FD 101.68%)",
+        "background-gradient":
+          "linear-gradient(180.35deg, #3850A5 0.85%, #8C239D 37.69%, rgba(20, 73, 102, 0.8625) 97.12%)",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
