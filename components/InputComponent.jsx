@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { useState } from "react";
 
@@ -6,6 +7,7 @@ let query = [];
 function InputComponent() {
   const [step, setStep] = useState(1);
   const [prompt, setPrompt] = useState("");
+  const router = useRouter();
   if (step == 1) {
     return (
       <div className="container mx-auto">
@@ -115,7 +117,10 @@ function InputComponent() {
                 setStep(step + 1);
                 query.push(prompt);
                 setPrompt("");
-                console.log(query);
+                router.push({
+    pathname: '/generate/summary',
+    query: { query}
+  });
               }}
               className="w-[550px] h-[60px] bg-gradient-to-r from-[#4A1C85] to-[#35A4FD] bg-opacity-10 hover:scale-105 hover:shadow-lg duration-200 active:scale-95 active:shadow-none disabled:opacity-25 disabled:cursor-not-allowed"
               disabled={prompt === ""}
