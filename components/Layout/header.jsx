@@ -1,9 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect, useRef } from "react";
+
+import { BsArrowRightShort } from "react-icons/bs";
 
 import { useWallet } from "@/context/wallet";
 import { useKeplr } from "@/services/keplr";
-import Link from "next/link";
 
 const dropdowns = [
   {
@@ -30,7 +33,7 @@ const Header = () => {
   const [showDropdown, setShowDropdown] = React.useState(false);
   const [dropdown, setDropdown] = React.useState(dropdowns[0]);
   const dropdownRef = useRef(null);
-
+  const router = useRouter();
   const ConnectWallet = () => {
     if (wallet.initialized) {
       keplr.disconnect();
@@ -55,7 +58,7 @@ const Header = () => {
     <div className="pt-6 px-4 container mx-auto bg-transparent">
       <header className="flex md:gap-x-[134px] gap-x-[72px] items-center">
         <Link href="/">
-          <Image alt="logo" src="/images/logo.svg" width={38} height={38} />
+          <Image alt="logo" src="/images/logo.svg" width={42} height={42} />
         </Link>
         <div className="flex w-full sm:justify-between justify-end items-center">
           <div className="hidden sm:block">
@@ -82,9 +85,18 @@ const Header = () => {
                           key={index}
                           className="relative p-2 text-sm font-medium w-full border "
                         >
-                          <Link className="cursor-pointer z-40" href={item.to}>
-                            {item.title}
-                          </Link>
+                          <button
+                            onClick={() => {
+                              router.push(item.to);
+                              setDropdown(item);
+                              setShowDropdown(false);
+                            }}
+                            className="cursor-pointer z-40 w-full flex justify-between items-center"
+                            href={item.to}
+                          >
+                            <span>{item.title}</span>
+                            <BsArrowRightShort size={20} />
+                          </button>
                           <div className="bg-[#35A4FD] -z-10 opacity-10 absolute top-0 w-full h-full "></div>
                         </li>
                       ))}
