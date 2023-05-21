@@ -4,6 +4,8 @@ import { AiOutlineCopy } from "react-icons/ai";
 
 import RustCodePart from "@/components/RustCodePart";
 
+import { res } from "@/contracts/cw20/result";
+
 const dummyData = [
   {
     text: `use cosmwasm_std::{
@@ -74,37 +76,127 @@ const dummyData = [
 ];
 
 const Result = () => {
+  const contract = res[0].items.map((data) => data.code).join("\n");
+  const state = res[1].items.map((data) => data.code).join("\n");
+  const msg = res[2].items.map((data) => data.code).join("\n");
+  const [show, setShow] = React.useState(0);
+  console.log(contract);
   const value = dummyData.map((data) => data.text).join("\n");
-  const copyValue = () => {
+  const copyContract = () => {
     navigator.clipboard
-      .writeText(value)
+      .writeText(contract)
       .then(() => {
-        console.log("Değer kopyalandı:", value);
+        console.log("Değer kopyalandı:", contract);
+      })
+      .catch((error) => {
+        console.error("Kopyalama işlemi başarısız oldu:", error);
+      });
+  };
+  const copyMsg = () => {
+    navigator.clipboard
+      .writeText(msg)
+      .then(() => {
+        console.log("Değer kopyalandı:", msg);
+      })
+      .catch((error) => {
+        console.error("Kopyalama işlemi başarısız oldu:", error);
+      });
+  };
+  const copyState = () => {
+    navigator.clipboard
+      .writeText(state)
+      .then(() => {
+        console.log("Değer kopyalandı:", state);
       })
       .catch((error) => {
         console.error("Kopyalama işlemi başarısız oldu:", error);
       });
   };
   return (
-    <div className="container mx-auto my-20 px-5 flex justify-center">
-      <div className="w-2/3 border border-[#35A4FD] p-4">
-        <div className="flex flex-col gap-y-2">
-          {dummyData.map((data, index) => (
-            <RustCodePart
-              key={index}
-              text={data.text}
-              description={data.description}
-            />
-          ))}
-        </div>
+    <div className="container mx-auto my-20 px-5 flex justify-center flex-col">
+      <div className="flex gap-x-2 mt-10">
         <button
-          onClick={copyValue}
-          className="w-full flex items-center justify-end mt-2"
+          onClick={() => setShow(0)}
+          className="px-3 py-2 text-white bg-blue-700 rounded-full shadow-md"
         >
-          <span>Copy All Code</span>
-          <AiOutlineCopy />
+          Contract
+        </button>
+        <button
+          onClick={() => setShow(1)}
+          className="px-3 py-2 text-white bg-blue-700 rounded-full shadow-md"
+        >
+          State
+        </button>
+        <button
+          onClick={() => setShow(2)}
+          className="px-3 py-2 text-white bg-blue-700 rounded-full shadow-md"
+        >
+          Msg
         </button>
       </div>
+      {show === 0 && (
+        <div className="w-full border border-[#35A4FD] p-4">
+          <h1>contract.rs</h1>
+          <div className="flex flex-col gap-y-2">
+            {res[0].items.map((data, index) => (
+              <RustCodePart
+                key={index}
+                text={data.code}
+                description={data.description}
+              />
+            ))}
+          </div>
+          <button
+            onClick={copyContract}
+            className="w-full flex items-center justify-end mt-2"
+          >
+            <span>Copy All Code</span>
+            <AiOutlineCopy />
+          </button>
+        </div>
+      )}
+      {show === 1 && (
+        <div className="w-full border border-[#35A4FD] p-4">
+          <h1>state.rs</h1>
+          <div className="flex flex-col gap-y-2">
+            {res[1].items.map((data, index) => (
+              <RustCodePart
+                key={index}
+                text={data.code}
+                description={data.description}
+              />
+            ))}
+          </div>
+          <button
+            onClick={copyState}
+            className="w-full flex items-center justify-end mt-2"
+          >
+            <span>Copy All Code</span>
+            <AiOutlineCopy />
+          </button>
+        </div>
+      )}
+      {show === 2 && (
+        <div className="w-full border border-[#35A4FD] p-4">
+          <h1>error.rs</h1>
+          <div className="flex flex-col gap-y-2">
+            {res[2].items.map((data, index) => (
+              <RustCodePart
+                key={index}
+                text={data.code}
+                description={data.description}
+              />
+            ))}
+          </div>
+          <button
+            onClick={copyMsg}
+            className="w-full flex items-center justify-end mt-2"
+          >
+            <span>Copy All Code</span>
+            <AiOutlineCopy />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

@@ -17,13 +17,16 @@ function InputComponent() {
   const router = useRouter();
   if (step == 1) {
     return (
-      <div className="container mx-auto">
+      <div className="container mx-auto mt-20">
         <div className="grid w-2/3 mx-auto bg-transparent grid-cols-1 text-white font-poppins">
           <div className="text-center mb-4 font-semibold tracking-wider text-lg">
             Step - {step}
           </div>
           <div className=" space-y-[17px] mb-[30px]">
-            <p>Enter your first input</p>
+            <p>
+              Describe your contract in general. State your purpose in as much
+              detail as possible. More detailed input, healthier result...
+            </p>
             <textarea
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
@@ -50,13 +53,13 @@ function InputComponent() {
     );
   } else if (step == 2) {
     return (
-      <div className="container mx-auto">
+      <div className="container mx-auto mt-20">
         <div className="grid w-2/3 mx-auto bg-transparent grid-cols-1 text-white font-poppins">
           <div className="text-center mb-4 font-semibold tracking-wider text-lg">
             Step - {step}
           </div>
           <div className=" space-y-[17px] mb-[30px]">
-            <p>Enter your second input</p>
+            <p>Enter the functions you will need in the contract</p>
             <textarea
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
@@ -65,7 +68,7 @@ function InputComponent() {
               required
             />
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between gap-x-8">
             <button
               onClick={() => {
                 setStep(1);
@@ -93,13 +96,13 @@ function InputComponent() {
     );
   } else if (step == 3) {
     return (
-      <div className="container mx-auto">
+      <div className="container mx-auto mt-20">
         <div className="grid w-2/3 mx-auto bg-transparent grid-cols-1 text-white font-poppins">
           <div className="text-center mb-4 font-semibold tracking-wider text-lg">
             Step - {step}
           </div>
           <div className=" space-y-[17px] mb-[30px]">
-            <p>Enter your third input</p>
+            <p>What data will you store on the blockchain?</p>
             <textarea
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
@@ -108,7 +111,7 @@ function InputComponent() {
               required
             />
           </div>
-          <div className=" flex justify-between">
+          <div className=" flex justify-between gap-x-8">
             <button
               onClick={() => {
                 setStep(1);
