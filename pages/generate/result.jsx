@@ -114,7 +114,7 @@ const Result = () => {
   };
   return (
     <div className="container mx-auto my-20 px-5 flex justify-center flex-col">
-      <div className="flex gap-x-2 mt-10">
+      <div className="flex gap-x-2 mb-10">
         <button
           onClick={() => setShow(0)}
           className="px-3 py-2 text-white bg-blue-700 rounded-full shadow-md"

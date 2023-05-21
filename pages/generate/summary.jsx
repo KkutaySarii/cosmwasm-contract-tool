@@ -13,13 +13,13 @@ function summary() {
     router.push("/generate/result");
   };
   return (
-    <div className="container mx-auto  min-h-screen mb-10">
+    <div className="container mx-auto flex justify-center  min-h-screen mb-10">
       {loading ? (
         <div className="">
           <LoadingComponent />
         </div>
       ) : (
-        <div className="mt-20">
+        <div className="mt-20 w-2/3">
           <div className="text-white text-poppins m-4 space-y-11 my-20">
             <h1 className="text-center text-3xl font-semibold tracking-wider mb-4">
               Summary
