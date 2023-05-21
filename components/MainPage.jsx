@@ -1,13 +1,15 @@
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 function MainPage() {
+  const router = useRouter();
   return (
     <div className="container mx-auto w-2/3 text-poppins text-white mt-20 mb-40">
       <h1 className="text-[55px] font-extrabold text-center mb-20">
         AI-Based Smart Contract Generator
       </h1>
-      <div className="flex grid-cols-2 mb-40 gap-x-16 flex-end">
+      <div className="flex grid-cols-2 mb-20 gap-x-16 flex-end">
         <div className="grid grid-cols-1">
           <p className="text-lg whitespace-normal opacity-70 my-auto">
             Not sure where to start? Use the interactive{" "}
@@ -56,7 +58,10 @@ function MainPage() {
         </div>
       </div> */}
       <div className="flex items-center justify-center">
-        <button className=" border border-1 rounded-2xl shadow-xl p-4">
+        <button
+          onClick={() => router.push("/generate/custom")}
+          className=" border border-1 rounded-2xl shadow-xl p-4"
+        >
           Get Started
         </button>
       </div>
