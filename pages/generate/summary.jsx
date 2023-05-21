@@ -24,7 +24,7 @@ function summary() {
             <h1 className="text-center text-3xl font-semibold tracking-wider mb-4">
               Summary
             </h1>
-            <ul className="max-h-48 w-56 overflow-y-auto space-y-2 pl-5">
+            <ul className="max-h-48 w-[900px] overflow-y-auto space-y-2 pl-5">
               {query &&
                 query.map((data, index) => (
                   <li className="w-full" key={index}>
