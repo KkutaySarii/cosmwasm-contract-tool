@@ -22,7 +22,10 @@ function summary() {
         </ul>
       </div>
       <div className="grid items-center mx-auto space-x-5 text-white text-poppins text-xl font-bold grid-cols-2">
-        <button className="w-[350px] h-[60px] bg-gradient-to-r from-[#4A1C85] to-[#35A4FD] bg-opacity-10 hover:scale-105 hover:shadow-lg duration-200 active:scale-95 active:shadow-none">
+        <button
+          onClick={() => router.push("/")}
+          className="w-[350px] h-[60px] bg-gradient-to-r from-[#4A1C85] to-[#35A4FD] bg-opacity-10 hover:scale-105 hover:shadow-lg duration-200 active:scale-95 active:shadow-none"
+        >
           Back
         </button>
         <button className="w-[600px] h-[60px] bg-gradient-to-r from-[#4A1C85] to-[#35A4FD] bg-opacity-10 hover:scale-105 hover:shadow-lg duration-200 active:scale-95 active:shadow-none">
