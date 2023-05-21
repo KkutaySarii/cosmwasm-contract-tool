@@ -105,7 +105,7 @@ const Header = () => {
                 )}
               </div>
               <div className="text-center px-5">Generate</div>
-              <div className="-z-10 absolute top-0 w-full h-full opacity-10 bg-[#35A4FD]"></div>
+              <div className="-z-10 absolute top-0 left-0 w-full h-full opacity-10 bg-[#35A4FD]"></div>
             </div>
           </div>
           <button

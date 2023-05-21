@@ -4,8 +4,40 @@ import { useRouter } from "next/router";
 
 function MainPage() {
   const router = useRouter();
+  const users = [
+    {
+      name: "Kutay Sarı",
+      image: "/images/kutay.jpeg",
+      title: "Developer Team Lead",
+    },
+    {
+      name: "Atahan Yıldırım",
+      image: "/images/ata.jpg",
+      title: "Backend Developer",
+    },
+    {
+      name: "Eyüp Bay",
+      image: "/images/eyup.jpeg",
+      title: "Frontend Developer",
+    },
+    {
+      name: "Ediz Züm",
+      image: "/images/ediz.jpg",
+      title: "Backend Developer",
+    },
+    {
+      name: "Berk Ünsal",
+      image: "/images/berk.jpeg",
+      title: "Business Development",
+    },
+    {
+      name: "İrem Koçi",
+      image: "/images/irem.jpg",
+      title: "Designer",
+    },
+  ];
   return (
-    <div className="container mx-auto w-2/3 text-poppins text-white mt-20 mb-40">
+    <div className="container mx-auto w-2/3 text-poppins min-h-screen text-white my-20 ">
       <h1 className="text-[55px] font-extrabold text-center mb-20">
         AI-Based Smart Contract Generator
       </h1>
@@ -65,7 +97,27 @@ function MainPage() {
           Get Started
         </button>
       </div>
-      <div></div>
+      <div className="mt-10 flex flex-wrap gap-5 justify-between   ">
+        {users.map((user, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center justify-center"
+          >
+            <div className="relative w-24 h-24">
+              <Image
+                src={user.image}
+                alt={user.name}
+                className="rounded-full border hover:scale-150 cursor-pointer transition-all"
+                fill
+              />
+            </div>
+            <div className="text-center">
+              <h3 className="text-sm font-semibold ">{user.name}</h3>
+              <h3 className="text-xs font-normal">{user.title}</h3>
+            </div>
+          </div>
+        ))}
+      </div>
       <div></div>
     </div>
   );
